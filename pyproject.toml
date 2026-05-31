@@ -5,6 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "grandalf>=0.8",
     "httpx>=0.28.1",
+    "jsonpointer>=3.1.1",
+    "langchain-core>=1.4.0",
+    "langchain-huggingface>=1.2.2",
+    "langchain-mcp-adapters>=0.2.2",
+    "langgraph",
     "mcp[cli]>=1.27.1",
 ]

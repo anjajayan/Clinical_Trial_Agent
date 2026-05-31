@@ -34,7 +34,7 @@ async def call_ctg_api(condition: str):
 
                 eligiblity = study['protocolSection']['eligibilityModule']
 
-                location = study['protocolSection']['contactsLocationsModule']
+                location = study['protocolSection'].get('contactsLocationsModule', "")
                 result.append({
                     'organization': org,
                     'title': title,
@@ -96,8 +96,6 @@ async def call_pubmed_api(condition: str):
             return "Error: Could not find any information for this request."
 
 
-
-
 @mcp.tool()
 async def search_trials(condition: str):
 
@@ -108,6 +106,9 @@ async def search_trials(condition: str):
 async def search_pubmed(condition: str):
     response = await call_pubmed_api(condition)
     return response
+
+if __name__ == "__main__":
+    mcp.run()
 
 
         
