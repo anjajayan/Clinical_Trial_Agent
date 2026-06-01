@@ -12,7 +12,7 @@ sem = asyncio.Semaphore(3)
 async def call_ctg_api(condition: str):
     # A simple GET request to a public API
     end_point = 'https://clinicaltrials.gov/api/v2/studies'
-    params = {'query.cond': condition}
+    params = {'query.cond': condition, 'pageSize': 3}
     async with httpx.AsyncClient() as client:
         response = await client.get(end_point, params = params)
 
@@ -32,14 +32,14 @@ async def call_ctg_api(condition: str):
 
                 description = study['protocolSection']['descriptionModule']
 
-                eligiblity = study['protocolSection']['eligibilityModule']
+                eligiblity = study['protocolSection']['eligibilityModule'].get("eligibilityCriteria")
 
                 location = study['protocolSection'].get('contactsLocationsModule', "")
                 result.append({
                     'organization': org,
                     'title': title,
                     'status': status_module,
-                    'description': description,
+                    # 'description': description, # reducing tokens due to high cost
                     'eligibility': eligiblity,
                     'location': location
                 })

@@ -26,10 +26,13 @@ async def main():
             await session.initialize()
             tools = await load_mcp_tools(session)
             workflow = call_trial_agent(tools)
-            user_query = input('Enter the query for clinical trials agent : ')
+            # user_query = "What is the latest published paper in diabetes and what is the latest trial in the same field? "
+            user_query =  input('Enter the query for clinical trials agent : ')
             init_state = {'messages': [HumanMessage(content = user_query)]}
             response = await workflow.ainvoke(init_state)
-            print(f"AI: {response}")
+            ai_message = response['messages'][-1].content
+            print(f"AI: {ai_message}")
+            print(response)
 
 
 
