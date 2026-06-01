@@ -21,9 +21,32 @@ class AgentState(TypedDict):
 
 
 def call_trial_agent(tools):
+    """
+    Build and compile a LangGraph agent workflow bound to the provided tools.
+
+    Constructs a StateGraph with an agent node and a tools node. The agent
+    invokes the LLM with the current message state, and the tools node
+    executes any tool calls returned by the LLM. Edges route between nodes
+    based on whether tool calls are present in the response.
+
+    Args:
+        tools: A list of LangChain-compatible tools to bind to the LLM.
+
+    Returns:
+        A compiled LangGraph workflow (CompiledStateGraph) ready to invoke.
+    """
     agent = model.bind_tools(tools)
 
     def agent_node(state: AgentState) -> AgentState:
+        """
+        Invoke the LLM agent with the current message history and return the response.
+
+        Args:
+            state: The current agent state containing the message history.
+
+        Returns:
+            An updated AgentState with the LLM response appended to messages.
+        """
         messages = state['messages']
         response = agent.invoke(messages)
 
