@@ -15,8 +15,8 @@ load_dotenv()
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 server = StdioServerParameters(
-    command = r"C:\Users\anjajayan\Clinical_Trial_Agent\.venv\Scripts\python.exe",
-    args = [r"C:\Users\anjajayan\Clinical_Trial_Agent\MCP\clinical_research_server.py"]
+    command = r".venv\Scripts\python.exe",
+    args = [r"MCP\clinical_research_server.py"]
 )
 
 async def main():
@@ -32,7 +32,8 @@ async def main():
             response = await workflow.ainvoke(init_state)
             ai_message = response['messages'][-1].content
             print(f"AI: {ai_message}")
-            print(response)
+            # print(response)
+
 
 
 
