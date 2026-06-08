@@ -1,3 +1,12 @@
+---
+title: Clinical Trial Agent
+emoji: 🏥
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # Clinical Trial Agent
 
 An agentic AI system that answers questions about clinical trials and medical research papers in plain English, grounded in real-time data from ClinicalTrials.gov and PubMed.
