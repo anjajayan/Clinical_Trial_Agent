@@ -13,10 +13,10 @@ from langchain_core.messages import HumanMessage
 
 load_dotenv()
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 server = StdioServerParameters(
-    command = r".venv\Scripts\python.exe",
-    args = [r"MCP\clinical_research_server.py"]
+    command = sys.executable,
+    args = [r"MCP/clinical_research_server.py"]
 )
 
 async def main():

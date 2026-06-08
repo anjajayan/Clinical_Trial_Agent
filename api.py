@@ -4,7 +4,7 @@ from langchain_core.messages  import HumanMessage
 from contextlib import asynccontextmanager
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-
+import sys
 from langchain_mcp_adapters.tools import load_mcp_tools
 
 from Agent.agent import call_trial_agent
@@ -13,8 +13,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 server = StdioServerParameters(
-    command = r"C:\Users\anjajayan\Clinical_Trial_Agent\.venv\Scripts\python.exe",
-    args = [r"C:\Users\anjajayan\Clinical_Trial_Agent\MCP\clinical_research_server.py"]
+    command = sys.executable,
+    args = [r"MCP/clinical_research_server.py"]
 )
 
 agent ={}
